@@ -1,0 +1,72 @@
+---
+title: 'Modes of Operation'
+description: 'Kida Pay operational modes.'
+icon: 'vial'
+---
+
+
+## Test Mode vs Live Mode
+
+When integrating the crypto payment checkout system, it's important to understand the two primary operational modes: **Test Mode** and **Live Mode**. Each mode serves a distinct purpose during the development and deployment lifecycle.
+
+---
+
+## 🧪 Test Mode
+
+Test Mode is used during development to simulate transactions without using real cryptocurrency.
+
+- **Purpose**: Development, debugging, and integration testing.
+- **Behavior**:
+  - No real funds are involved.
+  - Simulates full checkout and payment flow.
+  - Uses test wallets and test tokens.
+  - Enables testing of webhooks and callback URLs.
+- **API Keys**: Use **Test API Keys** from your developer dashboard.
+- **Environment**: Set your application to run in `Sandbox` mode (this can be found at the top right ).
+
+> Test Mode ensures your system behaves correctly before going live.
+
+---
+
+## 🚀 Live Mode
+
+Live Mode is for production. It processes real payments from real customers using blockchain transactions.
+
+- **Purpose**: Production use and real payments.
+- **Behavior**:
+  - Executes real crypto transfers on the blockchain.
+  - Webhooks and callbacks are fired in real-time.
+  - Should only be used when fully tested and ready.
+- **API Keys**: Use **Live API Keys**.
+- **Environment**: Set your environment to `live`.
+
+> Be sure all endpoints and configurations are correct before enabling Live Mode.
+
+---
+
+## ✅ Mode Comparison
+
+| Feature              | Test Mode          | Live Mode          |
+|----------------------|--------------------|---------------------|
+| Real Crypto Used?     | ❌ No               | ✅ Yes               |
+| Use Case              | Development/QA     | Production           |
+| Requires Real Wallet? | ❌ No               | ✅ Yes               |
+| API Key Type          | Test Key           | Live Key             |
+
+---
+
+## 🔁 Switching Between Modes
+
+You can easily toggle between **Test Mode** and **Live Mode** by using the environment switcher located at the **top right corner of the dashboard**.
+
+1. Click the mode toggle (Sandbox/Live) at the top right.
+2. The system will automatically update your current environment.
+3. Make sure to use the correct API keys for the selected mode.
+4. Verify your webhook endpoints and other configurations.
+
+> This allows you to safely test features without affecting real users or funds.
+
+---
+
+By utilizing both modes correctly, you can confidently test your crypto payment flows before accepting real payments from users.
+
