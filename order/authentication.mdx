@@ -1,9 +1,8 @@
 ---
 title: 'Authentication'
-description: 'If you want to call the API (CreateOrder) on your website or apps, authentication'
+description: "KidaPay APIs are secured using API keys. All requests to the KidaPay API must be authenticated using a valid secret key, which can be obtained from the API Key tab under the Settings section of your KidaPay account. This mechanism ensures that only authorized users can access and interact with your account's resources securely."
 icon: 'key'
 ---
-* API Server Side Authentication
 
 ## API Server Side Authentication
 
@@ -13,7 +12,7 @@ Server-side calls to this API must be done from a secured and trusted environmen
 
 ```
 HTTP header: 
-  token: tokenname
+  x-api-key: tokenname
 ```
 
 Get Token from backend portal.
