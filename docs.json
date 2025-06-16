@@ -19,19 +19,7 @@
               "index"
             ]
           },
-          {
-            "group": "Order",
-            "pages": [
-              "order/authentication",
-              "order/error",
-              "order/order-status",
-              "order/create-order",
-              "order/get-order",
-              "order/get-orders",
-              "order/payment-callback",
-              "order/refund"
-            ]
-          },
+          
           {
             "group": "Tutorial",
             "pages": [
@@ -43,6 +31,31 @@
             "group": "Panel",
             "pages": [
               "panel/shopify"
+            ]
+          }
+        ]
+        
+      }, 
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Kida Pay API",
+            "pages": [
+              "kidapay-api/introduction",
+               "order/authentication",
+              "order/error"
+            ]
+          },
+          {
+            "group": "API Endpoints",
+            "pages": [
+              "order/order-status",
+              "order/create-order",
+              "order/get-order",
+              "order/get-orders",
+              "order/payment-callback",
+              "order/refund"
             ]
           }
         ]
