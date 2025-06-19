@@ -1,44 +1,269 @@
 ---
-title: 'Refund'
-description: 'Making a refund request for a specific order by KidaPay order ID.'
-icon: 'money-bill-transfer'
+title: "Refund"
+description: "Making a refund request for a specific order by KidaPay order ID."
+icon: "money-bill-transfer"
 ---
-
 
 Use it when the order status is PAID.
 
 It's done by KidaPay payment page. ONLY use this if you want to build an in-house payment without redirecting.
 
---------
+---
 
 ## Definition
-**POST** https://api.kidapay.com/v1/orders/:order_id/refund
+
+**POST** https://api-dev.kidapay.com/v1/refund
 
 ## Body Params
+
 <table>
-<thead>
-	<tr>
-	<th>Param</th>
-	<th>Type</th>
-	<th>Required</th>
-	<th>Description</th>
-	</tr>
-</thead>
-<tbody>
-	<tr>
-		<td>order_id</td>
-		<td><code>string</code></td>
-		<td>Yes</td>
-		<td>KidaPay order ID. It's provided in the response of Create Order.</td>
-	</tr>
-</tbody>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>order_id</td>
+      <td>
+        <code>string</code>
+      </td>
+      <td>Yes</td>
+      <td>KidaPay order ID. It's provided in the response of Create Order.</td>
+    </tr>
+  </tbody>
 </table>
 
-
 ## Example
+
+<Tabs>
+    <Tab value="sandbox" title="Sandbox" default>
+
+<Tabs>
+    <Tab value="sandbox" title="cURL" default>
+
+```jsx
+curl -X POST https://api-dev-sandbox.kidapay.com/v1/refund \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: YOUR_API_KEY_HERE" \
+  -d '{
+    "order_id": "ord_5f8e7d9c6b3a2c1d0e4f5a6b",
+    "address": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    "pay_currency": "USDT",
+    "pay_amount": "125.50",
+    "reason": "Customer requested cancellation",
+    "user_id": "5f8e7d9c6b3a2c1d0e4f5a6b"
+  }'
 ```
-curl -X POST \
-  https://api.kidapay.com/v1/orders/8cbe9c00-7b0d-4b03-816f-e88a3c6bfa5c \
-  -H 'token: API_TOKEN_GET_FROM_ADMIN_PORTAL'
-	
+
+  </Tab>
+
+  <Tab value="node" title="Node">
+
+```js
+const https = require("https");
+
+const data = JSON.stringify({
+  order_id: "ord_5f8e7d9c6b3a2c1d0e4f5a6b",
+  address: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+  pay_currency: "USDT",
+  pay_amount: "125.50",
+  reason: "Customer requested cancellation",
+  user_id: "5f8e7d9c6b3a2c1d0e4f5a6b",
+});
+
+const options = {
+  hostname: "api-dev-sandbox.kidapay.com",
+  path: "/v1/refund",
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Content-Length": Buffer.byteLength(data),
+    "x-api-key": "YOUR_API_KEY_HERE", // Replace with your actual API key
+  },
+};
+
+const req = https.request(options, (res) => {
+  let body = "";
+
+  res.on("data", (chunk) => {
+    body += chunk;
+  });
+
+  res.on("end", () => {
+    console.log("Response:", body);
+  });
+});
+
+req.on("error", (error) => {
+  console.error("Error:", error);
+});
+
+req.write(data);
+req.end();
 ```
+
+  </Tab>  
+  <Tab value="php" title="PHP">
+
+```php
+<?php
+
+$url = 'https://api-dev-sandbox.kidapay.com/v1/refund';
+
+$data = [
+    "order_id" => "ord_5f8e7d9c6b3a2c1d0e4f5a6b",
+    "address" => "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    "pay_currency" => "USDT",
+    "pay_amount" => "125.50",
+    "reason" => "Customer requested cancellation",
+    "user_id" => "5f8e7d9c6b3a2c1d0e4f5a6b"
+];
+
+$headers = [
+    'Content-Type: application/json',
+    'x-api-key: YOUR_API_KEY_HERE' // Replace with your actual API key
+];
+
+$ch = curl_init($url);
+
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+$response = curl_exec($ch);
+
+if (curl_errno($ch)) {
+    echo 'Curl error: ' . curl_error($ch);
+} else {
+    echo 'Response: ' . $response;
+}
+
+curl_close($ch);
+
+```
+
+  </Tab>  
+  
+</Tabs>
+
+  </Tab>
+
+  <Tab value="live" title="Live">
+
+<Tabs>
+    <Tab value="sandbox" title="cURL" default>
+
+```jsx
+curl -X POST https://api-dev.kidapay.com/v1/refund \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: YOUR_API_KEY_HERE" \
+  -d '{
+    "order_id": "ord_5f8e7d9c6b3a2c1d0e4f5a6b",
+    "address": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    "pay_currency": "USDT",
+    "pay_amount": "125.50",
+    "reason": "Customer requested cancellation",
+    "user_id": "5f8e7d9c6b3a2c1d0e4f5a6b"
+  }'
+```
+
+  </Tab>
+
+  <Tab value="node" title="Node">
+
+```js
+const https = require("https");
+
+const data = JSON.stringify({
+  order_id: "ord_5f8e7d9c6b3a2c1d0e4f5a6b",
+  address: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+  pay_currency: "USDT",
+  pay_amount: "125.50",
+  reason: "Customer requested cancellation",
+  user_id: "5f8e7d9c6b3a2c1d0e4f5a6b",
+});
+
+const options = {
+  hostname: "api-dev.kidapay.com",
+  path: "/v1/refund",
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Content-Length": Buffer.byteLength(data),
+    "x-api-key": "YOUR_API_KEY_HERE", // Replace with your actual API key
+  },
+};
+
+const req = https.request(options, (res) => {
+  let body = "";
+
+  res.on("data", (chunk) => {
+    body += chunk;
+  });
+
+  res.on("end", () => {
+    console.log("Response:", body);
+  });
+});
+
+req.on("error", (error) => {
+  console.error("Error:", error);
+});
+
+req.write(data);
+req.end();
+```
+
+  </Tab>  
+  <Tab value="php" title="PHP">
+
+```php
+<?php
+
+$url = 'https://api-dev.kidapay.com/v1/refund';
+
+$data = [
+    "order_id" => "ord_5f8e7d9c6b3a2c1d0e4f5a6b",
+    "address" => "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    "pay_currency" => "USDT",
+    "pay_amount" => "125.50",
+    "reason" => "Customer requested cancellation",
+    "user_id" => "5f8e7d9c6b3a2c1d0e4f5a6b"
+];
+
+$headers = [
+    'Content-Type: application/json',
+    'x-api-key: YOUR_API_KEY_HERE' // Replace with your actual API key
+];
+
+$ch = curl_init($url);
+
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+$response = curl_exec($ch);
+
+if (curl_errno($ch)) {
+    echo 'Curl error: ' . curl_error($ch);
+} else {
+    echo 'Response: ' . $response;
+}
+
+curl_close($ch);
+
+```
+
+  </Tab>  
+  
+</Tabs>
+
+  </Tab>  
+  
+</Tabs>

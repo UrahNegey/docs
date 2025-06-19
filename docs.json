@@ -50,10 +50,10 @@
           {
             "group": "API Endpoints",
             "pages": [
-              "order/order-status",
               "order/create-order",
               "order/get-order",
               "order/get-orders",
+              "order/order-status",
               "order/payment-callback",
               "order/refund"
             ]

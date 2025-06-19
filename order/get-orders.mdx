@@ -1,64 +1,276 @@
 ---
-title: 'Get Orders'
-description: 'Retrieving information of all orders.'
-icon: 'clipboard-list-check'
+title: "Get Orders"
+description: "Retrieving information of all orders."
+icon: "clipboard-list-check"
 ---
-
 
 It's done by KidaPay payment page. ONLY use this if you want to build an in-house payment without redirecting.
 
---------
+---
 
 ## Definition
-**GET:** [Sandbox](https://api.kidapay.com/v1/orders), [Live](https://api.kidapay.com/v1/orders)
+
+**GET:**
+
+<Tabs>
+    <Tab value="sandbox" title="Sandbox" default>
+
+```
+https://api-dev-sandbox.kidapay.com/v1/orders
+```
+
+  </Tab>
+
+  <Tab value="live" title="Live">
+
+```
+https://api-dev.kidapay.com/v1/orders
+```
+
+  </Tab>  
+  
+</Tabs>
 
 ## Query Params
 
 <table>
-<thead>
-	<tr>
-	<th>Param</th>
-	<th>Type</th>
-	<th>Required</th>
-	<th>Description</th>
-	</tr>
-</thead>
-<tbody>
-	<tr>
-		<td>status</td>
-		<td><code>Status Type</code></td>
-		<td></td>
-		<td>E.g. PAID. Default all statuses.</td>
-	</tr>
-	<tr>
-		<td>limit</td>
-		<td><code>integer</code></td>
-		<td></td>
-		<td>numbers of orders per page. Max: 50. Default: 10.</td>
-	</tr>
-	<tr>
-		<td>offset</td>
-		<td><code>integer</code></td>
-		<td></td>
-		<td>starting item. Default: 0.</td>
-	</tr>
-</tbody>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>status</td>
+      <td>
+        <code>Status Type</code>
+      </td>
+      <td></td>
+      <td>E.g. PAID. Default all statuses.</td>
+    </tr>
+    <tr>
+      <td>limit</td>
+      <td>
+        <code>integer</code>
+      </td>
+      <td></td>
+      <td>numbers of orders per page. Max: 50. Default: 10.</td>
+    </tr>
+    <tr>
+      <td>offset</td>
+      <td>
+        <code>integer</code>
+      </td>
+      <td></td>
+      <td>starting item. Default: 0.</td>
+    </tr>
+  </tbody>
 </table>
 
-
-
 ## Example
-```
 
+<Tabs>
+    <Tab value="sandbox" title="Sandbox" default>
+
+<Tabs>
+    <Tab value="sandbox" title="cURL" default>
+
+```jsx
 curl -X GET \
-  'https://api.kidapay.com/v1/orders?limit=20&offset=10' \
+  'https://api-dev-sandbox.kidapay.com/v1/orders?take=10&page=1%20' \
   -H 'token: TOKEN_FROM_ADMIN_PORTAL'
 
+```
+
+  </Tab>
+
+  <Tab value="node" title="Node">
+
+```js
+const https = require("https");
+
+const token = "TOKEN_FROM_ADMIN_PORTAL"; // Replace with your actual token
+
+const options = {
+  hostname: "api-dev-sandbox.kidapay.com",
+  path: "/v1/orders?take=10&page=1%20",
+  method: "GET",
+  headers: {
+    token: token,
+  },
+};
+
+const req = https.request(options, (res) => {
+  let data = "";
+
+  console.log(`Status Code: ${res.statusCode}`);
+
+  res.on("data", (chunk) => {
+    data += chunk;
+  });
+
+  res.on("end", () => {
+    try {
+      const json = JSON.parse(data);
+      console.log("Response:", json);
+    } catch (err) {
+      console.error("Failed to parse JSON:", data);
+    }
+  });
+});
+
+req.on("error", (err) => {
+  console.error("Request Error:", err.message);
+});
+
+req.end();
+```
+
+  </Tab>  
+  <Tab value="php" title="PHP">
+
+```php
+<?php
+
+$token = 'TOKEN_FROM_ADMIN_PORTAL'; // Replace with your actual token
+$url = 'https://api-dev-sandbox.kidapay.com/v1/orders?take=10&page=1%20';
+
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    "token: $token"
+]);
+
+$response = curl_exec($ch);
+
+if (curl_errno($ch)) {
+    echo 'Request Error: ' . curl_error($ch);
+} else {
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    echo "HTTP Status Code: $httpCode\n";
+
+    $data = json_decode($response, true);
+    echo "Response:\n";
+    print_r($data);
+}
+
+curl_close($ch);
 
 ```
- 
+
+  </Tab>  
+  
+</Tabs>
+
+  </Tab>
+
+  <Tab value="live" title="Live">
+
+<Tabs>
+    <Tab value="live" title="cURL" default>
+
+```jsx
+curl -X GET \
+  'https://api-dev.kidapay.com/v1/orders?take=10&page=1%20' \
+  -H 'token: TOKEN_FROM_ADMIN_PORTAL'
+
+```
+
+  </Tab>
+
+  <Tab value="node" title="Node">
+
+```js
+const https = require("https");
+
+const token = "TOKEN_FROM_ADMIN_PORTAL"; // Replace with your actual token
+
+const options = {
+  hostname: "api-dev.kidapay.com",
+  path: "/v1/orders?take=10&page=1%20",
+  method: "GET",
+  headers: {
+    token: token,
+  },
+};
+
+const req = https.request(options, (res) => {
+  let data = "";
+
+  console.log(`Status Code: ${res.statusCode}`);
+
+  res.on("data", (chunk) => {
+    data += chunk;
+  });
+
+  res.on("end", () => {
+    try {
+      const json = JSON.parse(data);
+      console.log("Response:", json);
+    } catch (err) {
+      console.error("Failed to parse JSON:", data);
+    }
+  });
+});
+
+req.on("error", (err) => {
+  console.error("Request Error:", err.message);
+});
+
+req.end();
+```
+
+  </Tab>  
+  <Tab value="php" title="PHP">
+
+```php
+<?php
+
+$token = 'TOKEN_FROM_ADMIN_PORTAL'; // Replace with your actual token
+$url = 'https://api-dev.kidapay.com/v1/orders?take=10&page=1%20';
+
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    "token: $token"
+]);
+
+$response = curl_exec($ch);
+
+if (curl_errno($ch)) {
+    echo 'Request Error: ' . curl_error($ch);
+} else {
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    echo "HTTP Status Code: $httpCode\n";
+
+    $data = json_decode($response, true);
+    echo "Response:\n";
+    print_r($data);
+}
+
+curl_close($ch);
+
+```
+
+  </Tab>  
+  
+</Tabs>
+
+  </Tab>  
+  
+</Tabs>
+
 ## Result Format
+
 ### 200 OK
+
 ```
 {
     "status": 200,

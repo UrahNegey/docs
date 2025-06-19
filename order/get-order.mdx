@@ -1,49 +1,264 @@
 ---
-title: 'Get Order'
-description: 'Retrieving a specific order by KidaPay order ID'
-icon: 'note-sticky'
+title: "Get Order"
+description: "Retrieving a specific order by KidaPay order ID"
+icon: "note-sticky"
 ---
-
-
 
 It's done by KidaPay payment page. ONLY use this if you want to build an in-house payment without redirecting.
 
---------
+---
 
 ## Definition
-**GET:** [Sandbox](https://api.kidapay.com/v1/orders), [Live](https://api.kidapay.com/v1/orders)
+
+**GET**
+
+<Tabs>
+    <Tab value="sandbox" title="Sandbox" default>
+
+```
+https://api-dev-sandbox.kidapay.com/v1/orders
+```
+
+  </Tab>
+
+  <Tab value="live" title="Live">
+
+```
+https://api-dev.kidapay.com/v1/orders
+```
+
+  </Tab>  
+  
+</Tabs>
 
 ## Body Params
+
 <table>
-<thead>
-	<tr>
-	<th>Param</th>
-	<th>Type</th>
-	<th>Required</th>
-	<th>Description</th>
-	</tr>
-</thead>
-<tbody>
-	<tr>
-		<td>order_id</td>
-		<td><code>string</code></td>
-		<td>Yes</td>
-		<td>KidaPay order ID. It's provided in the response of Create Order.</td>
-	</tr>
-</tbody>
+  <thead>
+    <tr>
+      <th>Param</th>
+      <th>Type</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>order_id</td>
+      <td>
+        <code>string</code>
+      </td>
+      <td>Yes</td>
+      <td>KidaPay order ID. It's provided in the response of Create Order.</td>
+    </tr>
+  </tbody>
 </table>
 
-
 ## Example
-```
+
+<Tabs>
+    <Tab value="sandbox" title="Sandbox" default>
+
+<Tabs>
+    <Tab value="sandbox" title="cURL" default>
+
+```jsx
 curl -X GET \
-  https://api.kidapay.com/v1/orders/8cbe9c00-7b0d-4b03-816f-e88a3c6bfa5c \
+  https://api-dev-sandbox.kidapay.com/v1/orders/8cbe9c00-7b0d-4b03-816f-e88a3c6bfa5c \
   -H 'token: API_TOKEN_GET_FROM_ADMIN_PORTAL'
-	
 ```
- 
+
+  </Tab>
+
+  <Tab value="node" title="Node">
+
+```js
+const https = require("https");
+
+const token = "API_TOKEN_GET_FROM_ADMIN_PORTAL"; // Replace with your actual API token
+const orderId = "8cbe9c00-7b0d-4b03-816f-e88a3c6bfa5c";
+
+const options = {
+  hostname: "api-dev-sandbox.kidapay.com",
+  path: `/v1/orders/${orderId}`,
+  method: "GET",
+  headers: {
+    token: token,
+  },
+};
+
+const req = https.request(options, (res) => {
+  let data = "";
+
+  console.log(`Status Code: ${res.statusCode}`);
+
+  res.on("data", (chunk) => {
+    data += chunk;
+  });
+
+  res.on("end", () => {
+    try {
+      const parsedData = JSON.parse(data);
+      console.log("Response:", parsedData);
+    } catch (error) {
+      console.error("Failed to parse response:", data);
+    }
+  });
+});
+
+req.on("error", (error) => {
+  console.error("Request error:", error.message);
+});
+
+req.end();
+```
+
+  </Tab>  
+  <Tab value="php" title="PHP">
+
+```php
+<?php
+
+$token = 'API_TOKEN_GET_FROM_ADMIN_PORTAL'; // Replace with your actual API token
+$orderId = '8cbe9c00-7b0d-4b03-816f-e88a3c6bfa5c';
+
+$url = "https://api-dev-sandbox.kidapay.com/v1/orders/$orderId";
+
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    "token: $token"
+]);
+
+$response = curl_exec($ch);
+
+if (curl_errno($ch)) {
+    echo 'Request Error: ' . curl_error($ch);
+} else {
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    echo "HTTP Status Code: $httpCode\n";
+
+    $data = json_decode($response, true);
+    echo "Response:\n";
+    print_r($data);
+}
+
+curl_close($ch);
+
+```
+
+  </Tab>  
+  
+</Tabs>
+
+  </Tab>
+
+  <Tab value="live" title="Live">
+
+<Tabs>
+    <Tab value="sandbox" title="cURL" default>
+
+```jsx
+curl -X GET \
+  https://api-dev.kidapay.com/v1/orders/8cbe9c00-7b0d-4b03-816f-e88a3c6bfa5c \
+  -H 'token: API_TOKEN_GET_FROM_ADMIN_PORTAL'
+```
+
+  </Tab>
+
+  <Tab value="node" title="Node">
+
+```js
+const https = require("https");
+
+const token = "API_TOKEN_GET_FROM_ADMIN_PORTAL"; // Replace with your actual live API token
+const orderId = "8cbe9c00-7b0d-4b03-816f-e88a3c6bfa5c";
+
+const options = {
+  hostname: "api-dev.kidapay.com",
+  path: `/v1/orders/${orderId}`,
+  method: "GET",
+  headers: {
+    token: token,
+  },
+};
+
+const req = https.request(options, (res) => {
+  let data = "";
+
+  console.log(`Status Code: ${res.statusCode}`);
+
+  res.on("data", (chunk) => {
+    data += chunk;
+  });
+
+  res.on("end", () => {
+    try {
+      const parsedData = JSON.parse(data);
+      console.log("Response:", parsedData);
+    } catch (error) {
+      console.error("Failed to parse response:", data);
+    }
+  });
+});
+
+req.on("error", (error) => {
+  console.error("Request error:", error.message);
+});
+
+req.end();
+```
+
+  </Tab>  
+  <Tab value="php" title="PHP">
+
+```php
+<?php
+
+$token = 'API_TOKEN_GET_FROM_ADMIN_PORTAL'; // Replace with your actual live API token
+$orderId = '8cbe9c00-7b0d-4b03-816f-e88a3c6bfa5c';
+
+$url = "https://api-dev.kidapay.com/v1/orders/$orderId";
+
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    "token: $token"
+]);
+
+$response = curl_exec($ch);
+
+if (curl_errno($ch)) {
+    echo 'Request Error: ' . curl_error($ch);
+} else {
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    echo "HTTP Status Code: $httpCode\n";
+
+    $data = json_decode($response, true);
+    echo "Response:\n";
+    print_r($data);
+}
+
+curl_close($ch);
+
+```
+
+  </Tab>  
+  
+</Tabs>
+
+  </Tab>  
+  
+</Tabs>
+
 ## Result Format
+
 ### 200 OK
+
 ```
 {
     "status": 200,
@@ -81,8 +296,11 @@ curl -X GET \
     }
 }
 ```
+
 ### Error Format
+
 KidaPay Server will always return status 400. If API failed, it will return error_code and error as its object.
+
 ```
 {
   "eror": "Order not found",

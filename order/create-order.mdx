@@ -5,7 +5,7 @@ icon: "cart-plus"
 
 The Create Order allows customers place a new order from your website. By integrating this API, you can create a secure trackable order that includes payment details, customer information and transaction metadata - all linked to your KidaPay merchant account. When the customer clicks the 'Pay with Crypto' button, he/she is going to the Crypto payment page payment_url. Create Order API does two things.
 
-Send customer’s order information to KidaPay system. This is the first step in the payment flow after the customer selects a product or service and is ready to pay.
+- Send customer’s order information to KidaPay system. This is the first step in the payment flow after the customer selects a product or service and is ready to pay.
 
 - You will get a payment_url page to direct the user. The page will contain the basic payment info.
 
@@ -15,10 +15,28 @@ This is the ONLY API needed for your website.
 
 ## Method
 
-**POST:** [Sandbox](https://api-dev-sandbox.kidapay.com/v1/orders), [Live](https://api.kidapay.com/v1/orders)
+**POST**
+
+<Tabs>
+    <Tab value="sandbox" title="Sandbox" default>
+
+```
+https://api-dev-sandbox.kidapay.com/v1/orders
+```
+
+  </Tab>
+
+  <Tab value="live" title="Live">
+
+```
+https://api-dev.kidapay.com/v1/orders
+```
+
+  </Tab>  
+  
+</Tabs>
 
 ## Headers
-
 
 <div className="border border-[#00BFA5] rounded-lg overflow-hidden">
   <div className="bg-[#E0F7F5] dark:bg-[#004D43] p-2 border-b border-[#00BFA5] text-sm font-mono text-gray-900 dark:text-white">
@@ -187,11 +205,14 @@ Replace API_TOKEN_GET_FROM_ADMIN_PORTAL with the one from backend portal.
 
 <img width="500px" src="https://dcdn.kidapay.com/docs/pics/get-api-en.png" />
 
+<Tabs>
+    <Tab value="sandbox" title="Sandbox" default>
+
 ```jsx
 curl -X POST \
-  https://api.kidapay.com/v1/orders \
-  -H 'content-type': 'application/json' \
-  -H 'x-api-key': 'API_TOKEN_GET_FROM_ADMIN_PORTAL' \
+  https://api-dev-sandbox.kidapay.com/v1/orders
+  -H 'content-type': 'application/json'
+  -H 'x-api-key': 'API_TOKEN_GET_FROM_ADMIN_PORTAL'
   -d '{
   "merchant_order_id": 100388,
   "amount": 10,
@@ -200,13 +221,36 @@ curl -X POST \
 
 ```
 
+  </Tab>
+
+  <Tab value="live" title="Live">
+
+```jsx
+curl -X POST \
+  https://api-dev.kidapay.com/v1/orders
+  -H 'content-type': 'application/json'
+  -H 'x-api-key': 'API_TOKEN_GET_FROM_ADMIN_PORTAL'
+  -d '{
+  "merchant_order_id": 100388,
+  "amount": 10,
+  "pay_currency": "USD"
+}'
+```
+
+  </Tab>  
+  
+</Tabs>
+
 ### Request with NodeJS
+
+<Tabs>
+    <Tab value="sandbox" title="Sandbox" default>
 
 ```jsx
 var request = require("request");
 
 var options = { method: 'POST',
-  url: 'https://api.kidapay.com/v1/orders',
+  url: 'https://api-dev-sandbox.kidapay.com/v1/orders',
   headers: {
      'content-type': 'application/json'
 	 'x-api-key': 'API_TOKEN_GET_FROM_ADMIN_PORTAL',
@@ -230,8 +274,45 @@ request(options, function (error, response, body) {
 
   console.log(body);
 });
-
 ```
+
+  </Tab>
+
+  <Tab value="live" title="Live">
+
+```jsx
+var request = require("request");
+
+var options = { method: 'POST',
+  url: 'https://api-dev.kidapay.com/v1/orders',
+  headers: {
+     'content-type': 'application/json'
+	 'x-api-key': 'API_TOKEN_GET_FROM_ADMIN_PORTAL',
+     },
+  body: {
+     merchant_order_id: '503a854998-6230-4338-adb7',
+     title: "Monthly Program x 1",
+     description: "Gaming for your family",
+     amount: 1,
+     currency: 'USD',
+     pay_currency: 'USDT',
+     callback_url: "https://ecards.com/api/success",
+     cancel_url: "https://ecards.com/ecardstatus?status=cancel",
+     success_url: "https://ecards.com/ecardstatus?status=success",
+  },
+  json: true
+};
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  console.log(body);
+});
+```
+
+  </Tab>  
+  
+</Tabs>
 
 ## POST Body
 
