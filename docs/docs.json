@@ -28,6 +28,13 @@
             ]
           },
           {
+            "group": "Developer Tools",
+            "pages": [
+              "dev-tools/overview",
+              "dev-tools/checkout"
+            ]
+          },
+          {
             "group": "Panel",
             "pages": [
               "panel/shopify"
