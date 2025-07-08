@@ -1,0 +1,125 @@
+---
+title: 'Introduction'
+description: 'Learn how to integrate our APIs into your application.'
+icon: 'house'
+---
+
+
+
+
+## API Basics
+
+Before you begin!
+You should create a free [KidaPay account]() that you can test the API against. We will provide you with test keys and wallets that you can use to make API calls and payments.
+
+
+
+The KidaPay API gives you access to pretty much all the features you can use on our merchants app and lets you integrate them for use in your application. It strives to be RESTful and is organized around the main resources you would be interacting with - with a few notable exceptions.
+
+
+
+### HTTP Methods
+
+<div className="w-full overflow-x-auto mt-4">
+  <table className="w-[620px] table-auto border dark:border-gray-500 rounded-lg overflow-hidden">
+    <thead className="w-[100%] bg-[#00BFA5] text-white dark:bg-[#00BFA5]">
+      <tr>
+        <th className="px-6 py-3 text-left text-sm font-semibold whitespace-nowrap">Method</th>
+        <th className="px-6 py-3 text-left text-sm font-semibold whitespace-nowrap">Type</th>
+        <th className="px-6 py-3 text-left text-sm font-semibold whitespace-nowrap">Description</th>
+      </tr>
+    </thead>
+    <tbody className="bg-white dark:bg-[transparent] text-gray-800 dark:text-gray-200">
+      <tr>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700 whitespace-nowrap">POST</td>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700 whitespace-nowrap">String</td>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">Creates a new resource on the server.</td>
+      </tr>
+      <tr>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700 whitespace-nowrap">GET</td>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700 whitespace-nowrap">String</td>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">Retrieves a representation of a resource.</td>
+      </tr>
+      <tr>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700 whitespace-nowrap">PUT</td>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700 whitespace-nowrap">String</td>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">Updates an existing resource or creates it if it doesn't exist.</td>
+      </tr>
+      <tr>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700 whitespace-nowrap">DELETE</td>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700 whitespace-nowrap">String</td>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">Deletes a specified resource.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+## 📘 Supported Currencies
+
+KidaPay supports a wide range of cryptocurrencies, enabling seamless and secure global payments. Each currency is integrated to ensure high-speed transactions, low fees, and compatibility with popular blockchain networks.
+
+Below is an overview of the currently supported currencies:
+
+<div className="overflow-x-auto mt-4">
+  <table className="w-auto table-auto border dark:border-gray-500 rounded-lg overflow-hidden">
+    <thead className="bg-[#00BFA5] text-white dark:bg-[#00BFA5]">
+      <tr>
+        <th className="px-6 py-3 text-left text-sm font-semibold whitespace-nowrap">Currency Code</th>
+        <th className="px-6 py-3 text-left text-sm font-semibold whitespace-nowrap">Network</th>
+        <th className="px-6 py-3 text-left text-sm font-semibold whitespace-nowrap">Description</th>
+        <th className="px-6 py-3 text-left text-sm font-semibold whitespace-nowrap">Transaction Minimum</th>
+      </tr>
+    </thead>
+    <tbody className="bg-white dark:bg-[#121212] text-gray-800 dark:text-gray-200">
+      <tr>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">USDT</td>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">ERC20, TRC20, BEP20</td>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">Tether USD is a stablecoin. We support multiple networks: Ethereum, Tron, Binance Smart Chain, and Solana.</td>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">0.5 USDT</td>
+      </tr>
+      <tr>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">TRX</td>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">Tron</td>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">Native asset of the Tron blockchain, known for low fees and fast transfers.</td>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">10 TRX</td>
+      </tr>
+      <tr>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">USDC_ALGO</td>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">Algorand</td>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">USDC issued on the Algorand blockchain. Offers fast and low-cost stablecoin transactions.</td>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">0.5 USDC</td>
+      </tr>
+      <tr>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">ALGO</td>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">Algorand</td>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">A scalable, eco-friendly blockchain supporting smart contracts and fast finality.</td>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">1 ALGO</td>
+      </tr>
+      <tr>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">ETH</td>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">Ethereum</td>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">Leading smart contract platform powering decentralized apps and assets.</td>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">0.01 ETH</td>
+      </tr>
+      <tr>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">SOL</td>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">Solana</td>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">A high-performance blockchain designed for fast and cheap transactions.</td>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">0.05 SOL</td>
+      </tr>
+      <tr>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">LTC</td>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">Litecoin</td>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">A faster alternative to Bitcoin for peer-to-peer payments.</td>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">0.001 LTC</td>
+      </tr>
+      <tr>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">BTC</td>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">Bitcoin</td>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">The original and most widely adopted cryptocurrency.</td>
+        <td className="px-6 py-4 border-t border-gray-200 dark:border-gray-700">0.0001 BTC</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

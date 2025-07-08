@@ -1,0 +1,91 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Kida Pay Docs",
+  "colors": {
+    "primary": "#00BFA5",
+    "light": "#00BFA5",
+    "dark": "#00BFA5"
+  },
+  "favicon": "/favicon.svg",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Guides",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "index"
+            ]
+          },
+          
+          {
+            "group": "Tutorial",
+            "pages": [
+              "tutorial/operation",
+              "tutorial/api-key"
+            ]
+          },
+          {
+            "group": "Developer Tools",
+            "pages": [
+              "dev-tools/overview",
+              "dev-tools/checkout"
+            ]
+          },
+          {
+            "group": "Panel",
+            "pages": [
+              "panel/shopify"
+            ]
+          }
+        ]
+        
+      }, 
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Kida Pay API",
+            "pages": [
+              "kidapay-api/introduction",
+               "order/authentication",
+              "order/error"
+            ]
+          },
+          {
+            "group": "API Endpoints",
+            "pages": [
+              "order/create-order",
+              "order/get-order",
+              "order/get-orders",
+              "order/order-status",
+              "order/payment-callback",
+              "order/refund"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "logo": {
+    "light": "/logo/logo-light.png",
+    "dark": "/logo/logo-dark.png"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Support",
+        "href": "mailto:info@kidapay.com"
+      }
+    ]
+  },
+  "footer": {
+    "socials": {
+      "x": "https://twitter.com/kidapay19505",
+      "github": "https://github.com/Kidapay",
+      "linkedin": "https://www.linkedin.com/company/102861446"
+    }
+  }
+}

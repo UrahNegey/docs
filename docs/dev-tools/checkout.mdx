@@ -1,0 +1,84 @@
+---
+title: 'Checkout SDK'
+description: 'Learn how to harness our collections of tools when integrating payment into your application'
+icon: 'wrench-simple'
+---
+
+
+
+
+## Kidapay Checkout SDK
+
+  <Card href="/docs/checkout-sdk" style={{ color: "white", width: "300px" }}>
+    The Kidapay Checkout SDK provides a collection of methods that allow you accept payment in your website or application.
+  </Card>
+
+
+## Introoduction
+
+The KidaPay Checkout SDK is an official JavaScript/TypeScript toolkit designed to let developers seamlessly integrate KidaPay’s cryptocurrency payment solutions into their websites or applications. It provides methods for initiating payments, with customizable UI components and robust backend communication — all while handling the complexities of blockchain transactions behind the scenes.
+
+
+## Installation
+
+KidaPay Checkout SDK can be included in your application via CDN, NPM or Yarn:
+
+<div className="kidapay-gradient-card">
+<Tabs>
+    <Tab value="CDN" title="CDN" default>
+
+```
+<script src="https://unpkg.com/kidapay-checkout-sdk@latest/dist/index.umd.js"></script>
+```
+
+  </Tab>
+
+  <Tab value="NPM" title="NPM">
+
+```
+npm install kidapay-checkout-sdk
+```
+
+  </Tab>  
+
+  <Tab value="yarn" title="Yarn">
+
+```
+yarn add kidapay-checkout-sdk
+```
+
+  </Tab>  
+  
+</Tabs>
+</div>
+
+If you used NPM or Yarn, ensure you import the library as shown below:
+
+<div className="kidapay-gradient-card">
+<h4 className="border-b border-gray-300">Initialization</h4>
+```jsx
+// Add for NPM, Yarn
+import { Kidapay } from 'kidapay-checkout-sdk';
+
+ const kidapay = new Kidapay();
+```
+</div>
+
+## Kidapay object
+
+The Kidapay object gives access to the methods and interfaces available in Kidapay Checkout SDK. It exposes methods, alongside configuration options that can help you accept payment seamlessly in your web application. The methods exposed by the Kidapay object include:
+
+1. **checkout(options: CheckoutOptions):**  Creates and opens a checkout session (browser only).
+
+2. **createCheckout(request: CreateCheckoutRequest):** Creates a checkout session (backend).
+
+3. **getCheckout(checkoutId: string):**  Retrieves checkout details.
+
+## Callbacks
+
+The Kidapay Checkout SDK object also exposes callbacks that can be used to monitor certain states during the lifecycle of a transaction.
+
+PaymentSuccessData: { id, order_id, pay_amount, pay_currency, pay_network, receieve_currency, receieve_amount, address, status }
+PaymentPendingData: { id, order_id, pay_amount, pay_currency, pay_network, receieve_currency, receieve_amount, address, status }
+PaymentPartialData: { id, order_id, pay_amount, pay_currency, pay_network, receieve_currency, receieve_amount, address, status }
+
